@@ -5,6 +5,9 @@
  */
 package practica2;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+
 /**
  *
  * @author Grupo 6
@@ -13,12 +16,10 @@ public class CurrencyConverter {
 
     private final float exchangeRate;
     private final float quantity;
-    private final boolean isEuro;
     
-    public CurrencyConverter(float quantity, float exchangeRate, boolean isEuro) {
+    public CurrencyConverter(float quantity, float exchangeRate) {
         this.exchangeRate = exchangeRate;
         this.quantity = quantity;
-        this.isEuro = isEuro;
     }
 
     public float getExchangeRate() {
@@ -28,10 +29,6 @@ public class CurrencyConverter {
     public float getQuantity() {
         return quantity;
     }
-
-    public boolean getIsEuro() {
-        return isEuro;
-    }
     
     public float calcularEquivalencia(boolean isEuro){
         if(isEuro){
@@ -39,5 +36,12 @@ public class CurrencyConverter {
         }else{
             return quantity/exchangeRate;
         }
+    }
+    
+    public String toString(float result){
+        DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
+        separadoresPersonalizados.setDecimalSeparator('.');
+        DecimalFormat formato1 = new DecimalFormat("0.00", separadoresPersonalizados);
+        return formato1.format(result);
     }
 }

@@ -6,8 +6,6 @@
 package practica2;
 
 import java.awt.Color;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import javax.swing.JOptionPane;
 
 /**
@@ -192,18 +190,22 @@ public class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         String amountT = amount.getText();
         String tasaT = tasa.getText();
-        
-        DecimalFormatSymbols separadoresPersonalizados = new DecimalFormatSymbols();
-        separadoresPersonalizados.setDecimalSeparator('.');
-        DecimalFormat formato1 = new DecimalFormat("0.00", separadoresPersonalizados);
             
-        if(isNumeric(amountT) && isNumeric(tasaT)){
+        if(isValid(amountT) && isValid(tasaT)){
             float  amountA= Float.parseFloat(amountT);
             float tasaA = Float.parseFloat(tasaT);
-            CurrencyConverter converter = new CurrencyConverter(amountA, tasaA, isEuroToDollar);
-            result.setText(formato1.format(converter.calcularEquivalencia(isEuroToDollar)));
+            CurrencyConverter converter = new CurrencyConverter(amountA, tasaA);
+            result.setText(converter.toString(converter.calcularEquivalencia(isEuroToDollar)));
         } else {
+            result.setText("");
+            if(isValid(amountT)== false){
+                amount.setBackground(Color.RED);
+            }
+            if(isValid(tasaT) == false){
+                tasa.setBackground(Color.RED);
+            }
             JOptionPane.showMessageDialog(Interfaz.this, "Debe introducir valores numéricos no negativos.");
+            
         }
     }//GEN-LAST:event_calcularActionPerformed
 
@@ -225,12 +227,14 @@ public class Interfaz extends javax.swing.JFrame {
         // TODO add your handling code here:
         tasa.setText("");
         tasa.setForeground(Color.black);
+        tasa.setBackground(Color.WHITE);
     }//GEN-LAST:event_tasaMouseClicked
 
     private void amountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_amountMouseClicked
         // TODO add your handling code here:
         amount.setText("");
         amount.setForeground(Color.black);
+        amount.setBackground(Color.WHITE);
     }//GEN-LAST:event_amountMouseClicked
     
     /**
@@ -286,7 +290,7 @@ public class Interfaz extends javax.swing.JFrame {
     private javax.swing.JLabel titleChange;
     // End of variables declaration//GEN-END:variables
 
-    private boolean isNumeric(String number) { 
+    private boolean isValid(String number) { 
         try{
             return Float.parseFloat(number) >= 0;
         }catch(NumberFormatException e){
