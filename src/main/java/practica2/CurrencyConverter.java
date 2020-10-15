@@ -7,7 +7,7 @@ package practica2;
 
 /**
  *
- * @author Borja
+ * @author Grupo 6
  */
 public class CurrencyConverter {
 

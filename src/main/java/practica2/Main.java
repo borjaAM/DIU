@@ -7,7 +7,7 @@ package practica2;
 
 /**
  *
- * @author Usuario
+ * @author Grupo 6
  */
 public class Main {
 
