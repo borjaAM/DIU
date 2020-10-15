@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Esther
+ * @author Grupo 6
  */
 public class Interfaz extends javax.swing.JFrame {
 
@@ -23,7 +23,7 @@ public class Interfaz extends javax.swing.JFrame {
     
     public Interfaz() {
         initComponents();
-        this.getContentPane().setBackground(Color.getHSBColor(2.2f, 104f, 305f));
+        this.getContentPane().setBackground(Color.getHSBColor(216, 177, 238));
     }
 
     /**
@@ -52,7 +52,7 @@ public class Interfaz extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Currency Converter");
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(216, 177, 238));
         setForeground(new java.awt.Color(255, 255, 255));
         setLocation(new java.awt.Point(500, 500));
         setResizable(false);
@@ -73,6 +73,15 @@ public class Interfaz extends javax.swing.JFrame {
 
         jLabel3.setText("Amount:");
 
+        amount.setForeground(new java.awt.Color(153, 153, 153));
+        amount.setText("ej: 3.15");
+        amount.setToolTipText("");
+        amount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                amountMouseClicked(evt);
+            }
+        });
+
         titleChange.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         titleChange.setText("From Euro to Dollar");
 
@@ -83,6 +92,15 @@ public class Interfaz extends javax.swing.JFrame {
         result.setEditable(false);
 
         simbolTo.setText("Dollar ($)");
+
+        tasa.setForeground(new java.awt.Color(153, 153, 153));
+        tasa.setText("ej: 5.4");
+        tasa.setToolTipText("");
+        tasa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tasaMouseClicked(evt);
+            }
+        });
 
         changeMode.setText("Change");
         changeMode.addActionListener(new java.awt.event.ActionListener() {
@@ -104,13 +122,19 @@ public class Interfaz extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(result, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                            .addComponent(result)
                             .addComponent(amount))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(simbolFrom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(simbolTo, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE))
                         .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(titleChange)
+                        .addGap(18, 18, 18)
+                        .addComponent(changeMode)
+                        .addGap(76, 76, 76))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -119,36 +143,33 @@ public class Interfaz extends javax.swing.JFrame {
                                 .addComponent(tasa, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(calcular)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(titleChange)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(changeMode))))
-                        .addGap(22, 22, 22))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(87, 87, 87)
+                                .addComponent(calcular)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addComponent(jSeparator1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(titleApp)
-                .addGap(34, 34, 34))
+                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addComponent(titleApp)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(10, 10, 10)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(tasa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(titleChange)
                     .addComponent(changeMode))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(simbolFrom, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -169,7 +190,6 @@ public class Interfaz extends javax.swing.JFrame {
 
     private void calcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calcularActionPerformed
         // TODO add your handling code here:
-        
         String amountT = amount.getText();
         String tasaT = tasa.getText();
         
@@ -200,6 +220,18 @@ public class Interfaz extends javax.swing.JFrame {
            simbolTo.setText("Dollar ($)");
         }
     }//GEN-LAST:event_changeModeActionPerformed
+
+    private void tasaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tasaMouseClicked
+        // TODO add your handling code here:
+        tasa.setText("");
+        tasa.setForeground(Color.black);
+    }//GEN-LAST:event_tasaMouseClicked
+
+    private void amountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_amountMouseClicked
+        // TODO add your handling code here:
+        amount.setText("");
+        amount.setForeground(Color.black);
+    }//GEN-LAST:event_amountMouseClicked
     
     /**
      * @param args the command line arguments
